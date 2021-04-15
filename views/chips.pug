@@ -1,14 +1,13 @@
 extends layout
 
 block content
-  div(class="container-fluid")
   h1= title
-  - let results=[{chipsName:"lays",Flavour:"BBQ",price:2.59},{chipsName:"kettel-cooked",Flavour:"Tomato",price:1.39},{chipsName:"spicyLays",Flavour:"spicy",price:3.99}] 
+    - let chips  = results
+  div(class="container-fluid mt-3")
   div(class="row")
-    each op,index in results
-        div(class = "col-sm-2 bg-primary" onclick=`buy(${index})`) #{op.chipsName}
-        div(class = "col-sm-2 bg-primary" onclick=`buy(${index})`) #{op.Flavour}
-        div(class = "col-sm-2 bg-primary" onclick=`buy(${index})`) #{op.price}
+    each i ,index in chips  
+      div(class="col-sm-4")  #{i.chipsName} - #{i.Flavour} -#{i.price}
+     
   script.
      
       function buy(itemNo)

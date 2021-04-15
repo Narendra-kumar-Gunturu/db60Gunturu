@@ -1,0 +1,51 @@
+extends layout
+
+block content
+    h1= title
+    
+    - let chipsid = toShow._id
+    - let chipsName = toShow.chipsName
+    - let chipsFlavour = toShow.Flavour
+    - let chipsprice = toShow.price
+
+    div
+        div.row
+            div(class='chipsAttr mr-3') chips ID is:
+            div(id="chipsid") #{chipsid}
+        div.row
+            div(class='chipsAttr mr-3') chips Name is:
+            div #{chipsName}
+        div.row
+            div(class='chipsAttr mr-3') chips Falvour is:
+            div #{chipsFlavour}
+        div.row
+            div(class='chipsAttr mr-3') chips Price  is:
+            div #{chipsprice}
+        
+        
+        button(class='btn btn-danger btn-md m-auto' type="Submit" onclick=`deletechips()`) Delete
+        button(class="btn btn-secondary m-2" onclick="cancel()") Cancel  
+
+    script.
+        function cancel() {   
+            // Go back to the home page for the costume collection     
+            window.location.href='/chips'   
+        }
+
+    script.
+        function deletechips() {
+            let value=document.getElementById("chipsid").innerHTML;
+            console.log(value)
+            // TODO do something here to show user that form is being submitted
+            fetch('/resource/chips/' + value, {
+                method: 'DELETE'
+            }).then((resp) => {
+                return resp.json(); // or resp.text() or whatever the server sends
+            }).then((body) => {
+                alert("Delete succeded")
+                    // TODO handle body
+            }).catch((error) => {
+                // TODO handle error
+                alert("Delete failed " + error )
+            });
+        };

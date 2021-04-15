@@ -1,0 +1,27 @@
+extends layout
+
+block content
+  h1= title
+
+    if (toShow == null)
+        h2 No instance to view
+    else
+      - let chipsid = toShow._id
+      - let chipsName = toShow.chipsName
+      - let chipsFlavour = toShow.Flavour
+      - let chipsprice = toShow.price
+
+  div
+    div.row
+      div(class='chipsAttr mr-3') chips ID is:
+      div #{chipsid}
+    div.row
+      div(class='chipsAttr mr-3') chips Name is:
+      div #{chipsName}
+    div.row
+      div(class='chipsAttr mr-3') chips price is:
+      div #{chipsprice}
+    div.row
+      div(class='chipsAttr mr-3') chips flavour is:
+      div #{chipsFlavour}
+
