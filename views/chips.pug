@@ -1,14 +1,19 @@
 extends layout
 
 block content
+  button.btn( class="btn-primary ml-1", onclick= destination) View
   h1= title
+  
     - let chips  = results
   div(class="container-fluid mt-3")
   div(class="row m-1")
     each i ,index in chips
+      - let destination1 = `dispatch(\"/chips/delete?id=${chips._id}\")`  
       - let destination = `dispatch(\"/chips/update?id=${chips._id}\")`  
       div(class="col-sm-4")  #{i.chipsName} - #{i.Flavour} -#{i.price}
+        button.btn( class="btn-success ml-1", onclick= destination) detail
         button.btn( class="btn-primary ml-1", onclick= destination) Update
+        button.btn( class="btn-warning ml-1", onclick= destination1) delete
      
   script.
      
